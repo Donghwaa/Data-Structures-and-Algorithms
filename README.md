@@ -6,5 +6,5 @@ It covers everthing from the fundamentals to advanced concepts,  structured lear
 
 
 ## **Key Objective**
-Leaverage the powerful features of C++ to implement  data structures and algorithms.
-Understand the principles and time complexities of algorithms.
+- Leaverage the powerful features of C++ to implement  data structures and algorithms.
+- Understand the principles and time complexities of algorithms.
