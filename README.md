@@ -1,4 +1,4 @@
-# 📚 **Study Repository for Data Structures and Algorithms in C++**
+# 📚 **Repository for Data Structures and Algorithms in C++**
 
 ## **Project Overview**
 This repository is a comprehensive space for learning and practicing data structures and alogorithms using C++.
