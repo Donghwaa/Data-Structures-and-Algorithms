@@ -48,23 +48,3 @@ public:
 template<> void ArrayProcessor<double>::Swap(double& a, double& b) { 
     std::cout << "Swap not supported for double type.\n";
     }
-
-int main() {
-    int arr[] = {1,2,3,4,5};
-    int size = sizeof(arr) / sizeof(arr[0]);
-
-    // ArrayProcessor instance for int type
-    ArrayProcessor<int> intProcessor(arr,size);
-
-    std::cout << "Minimum Value of Array: " << intProcessor.finMin() << std::endl; 
-    std::cout << "Sum of Array: " << intProcessor.sumArray() << std::endl;
-    
-    int a = 10 , b = 20;
-    ArrayProcessor<int>::Swap(a,b); 
-    std::cout << "Swap results for int type values: " << a << ' ' << b << '\n';
-
-    double x = 1.5, y = 2.0; 
-    ArrayProcessor<double>::Swap(x,y);
-
-    return 0;
-};
