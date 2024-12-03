@@ -1,3 +1,8 @@
+// Clang/Template/smart_pointer.cpp 예제와 비교
+// Account에 대한 unique_ptr 생성
+// 특징:
+// 동적 메모리 할당: 객체는 스택(Stack)에 동적으로 생성.
+
 #include<iostream>
 
 class Account {
@@ -6,11 +11,13 @@ protected:
 public:
     Account(double initial_balance) : balance_(initial_balance) {}
 
+    virtual ~Account() {} // 가상 소멸자
+
     // void withdraw(double amount) {
     virtual void withdraw(double amount) {
         balance_ -= amount;
-        std::cout << "출금금액" << amount << std::endl;
-        std::cout << "남은 잔액" << balance_ << std::endl;
+        std::cout << "출금 금액: " << amount << std::endl;
+        std::cout << "남은 잔액: " << balance_ << std::endl;
     }
 };
 
@@ -21,7 +28,7 @@ public:
     // void withdraw(double amount) { // 재정의
     void withdraw(double amount) override {
         if(amount > 1000) {
-            std::cout << "1000원을 초과하여 출금할 수 없습니다" << std::endl;
+            std::cout << "1000원을 초과하여 출금할 수 없습니다." << std::endl;
         } else {
             Account::withdraw(amount);
         }
@@ -29,18 +36,19 @@ public:
 };
 
 int main() {
-    Account* accountPtr; 
-    // Account* 포인터는 실행 중에 어떤 객체(basciAccount, savingsAccount)를 가리키는지 확인
-    Account basicAccount(5000); // Account 객체
-    SavingAccount savingsAccount(5000); // SavingsAccout 객체
+    Account* accountPtr; // 기본 클래스(Account)의 포인터
+    // 이 포인터는 실행 시간(run time)에 어떤 객체(basicAccount 또는 savingsAccount)를 가리키는지 결정
 
-    // 포인터가 기본 클래스의 객체를 가리키는 경우
+    Account basicAccount(5000); 
+    SavingAccount savingsAccount(5000); 
+
+    // 포인터가 기본 클래스 객체를 가리키는 경우
     accountPtr = &basicAccount;
     accountPtr->withdraw(500); // Account::withdraw 호출
 
-    // 파생 클래스의 객체를 가리키는 경우
+    // 포인터가 파생 클래스 객체를 가리키는 경우
     accountPtr = &savingsAccount;
-    accountPtr->withdraw(2000);  // 오류 : 출금 가능
+    accountPtr->withdraw(2000);  // SavingAccount::withdraw 호출, 출금 한도 확인
 
     return 0;
 }
