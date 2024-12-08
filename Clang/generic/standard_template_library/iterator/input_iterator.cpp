@@ -1,18 +1,8 @@
 #include<iostream>
 #include<vector>
+#include<iterator>
 
-template<class InputIterator, class T> // std::find, reference: linear search algorithm
-InputIterator Find(InputIterator first, InputIterator last, const T& value) {
-    while (first != last) {
-        if (*first == value) {
-            return first;
-        }
-        ++first;
-    }
-    return last;
-};
-
-int main() {
+void vectorIteratorExample() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
 
     // Declare an iterator and point it to the first element
@@ -43,5 +33,22 @@ int main() {
     iter++;
     std::cout << "After post-increment: " << *iter << "\n";
 
-    return 0;
+};
+
+
+void istreamIteratorExample() {
+    std::cout << "Enter Numbers\n";
+
+    // Input stream iterator for reading numbers from std::cin
+    std::istream_iterator<int> input_iter(std::cin);
+    std::istream_iterator<int> end_iter;
+
+    std::vector<int> numbers(input_iter, end_iter);
+
+    std::cout << "You Enterd: ";
+    for (const auto& num : numbers) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
 };
