@@ -1,40 +1,47 @@
 #include<iostream>
 #include<vector>
 
+template<class InputIterator, class T> // std::find, reference: linear search algorithm
+InputIterator Find(InputIterator first, InputIterator last, const T& value) {
+    while (first != last) {
+        if (*first == value) {
+            return first;
+        }
+        ++first;
+    }
+    return last;
+};
+
 int main() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
 
-    // 반복자 선언 및 첫 번째 요소를 가리킴
+    // Declare an iterator and point it to the first element
     std::vector<int>::iterator iter = numbers.begin();
 
-    // 반복자를 통해 요소 값에 접근
-    std::cout << "첫 번째 요소:" << *iter << "\n";
+    // Access the value of the element
+    std::cout << "First element: " << *iter << "\n";
 
-    // 반복자가 가리키는 요소 값을 수정
     *iter = 6;
+    std::cout << "First element after update: " << *iter <<"\n";
 
-    std::cout << "첫 번째 요소 수정: " << *iter <<"\n";
-
-    // 반복자 대입 연산
+    // iterator assignment
     std::vector<int>::iterator iter1 = numbers.begin();
     std::vector<int>::iterator iter2 = numbers.end();
 
     iter1 = iter;
     if (iter == iter1) {
-        std::cout << "iter와 iter1은 같은 요소 입니다." << "\n";
+        std::cout << "iter and iter1 point to the same element.\n";
     }
 
     if (iter != iter2) {
-        std::cout << "iter와 iter2는 다른 요소 입니다."<< "\n";
+        std::cout << "iter and iter1 point to the different element.\n";
     }
 
-    // 전위 증가 연산자
     ++iter;
-    std::cout << "전위 증가: " << *iter << "\n";
+    std::cout << "After pre-increment: " << *iter << "\n";
 
-    // 후위 증가 연산자
     iter++;
-    std::cout << "후위 증가: " << *iter << "\n";
+    std::cout << "After post-increment: " << *iter << "\n";
 
     return 0;
 };
