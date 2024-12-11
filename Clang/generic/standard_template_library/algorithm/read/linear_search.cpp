@@ -2,17 +2,6 @@
 #include<vector>
 #include<algorithm> //std::find
 
-template<class InputIterator, class T>
-InputIterator Find(InputIterator first, InputIterator last, const T& value) {
-    while (first != last) {
-        if (*first == value) {
-            return first;
-        }
-        ++first;
-    }
-    return last;
-};
-
 
 int main() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
